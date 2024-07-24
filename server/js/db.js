@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
 //connect to mongoDB - going to hide this
 const myURI = ''; // insert MongoDB here
 

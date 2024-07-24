@@ -8,7 +8,7 @@ const myURI: string =
 const URI: string  = process.env.MONGO_URI || myURI;
 
 const connectDB = () => {
-  mongoose.connect(myURI);
+  mongoose.connect(URI);
 
   //when connected display message to dev successful connection
   mongoose.connection.on('connected', () => {

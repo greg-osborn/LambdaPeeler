@@ -13,21 +13,27 @@ import path from 'path';
 // const cookieParser = require('cookie-parser');
 import cookieParser from 'cookie-parser';
 
-//
+// connect to DB
 connectDB();
+
 // Initialize Express
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // CORS
-const cors = require('cors'); 
-app.use(cors({ origin: 'https://lambda-peeler.onrender.com/', methods: ["POST", "GET"], credentials: true }));
+const cors = require('cors');
+// line below is for dev
+app.use(cors({ origin: 'http://localhost:8080', credentials: true }));
+// line below is for prod, publicly hosted version
+// app.use(cors({ origin: 'https://lambda-peeler.onrender.com/', methods: ["POST", "GET"], credentials: true }));
 // app.use(cors());
 
 
 // // app.use(express.static('assets'));
-app.use(express.static(path.join(__dirname, '../dist')));
-// app.use('/assets', express.static(path.join(__dirname, '../public/assets')));
+// line below is for prod, publicly hosted version
+// app.use(express.static(path.join(__dirname, '../dist')));
+
+app.use('/assets', express.static(path.join(__dirname, '../public/assets')));
 
 app.use(cookieParser());
 app.use(express.json()); // for parsing application/json
